@@ -29,15 +29,12 @@ import (
 
 const (
 	// plugin is used to identify ourselves in log output
-	plugin = "openstack"
+	plugin                      = "openstack"
 	volumeV2Service serviceType = "volumev2"
 )
 
 // serviceType is an OpenStack service type
 type serviceType string
-
-// tagMap maps a tag name to value.
-type tagMap map[string]string
 
 // fieldMap maps a field to an arbitrary data type.
 type fieldMap map[string]interface{}
@@ -340,13 +337,13 @@ func (o *OpenStack) accumulateIdentity(acc telegraf.Accumulator) {
 	fields := fieldMap{
 		"projects": len(o.projects),
 	}
-	acc.AddFields("openstack_identity", fields, tagMap{})
+	acc.AddFields("openstack_identity", fields, map[string]string{})
 }
 
 // accumulateHypervisors accumulates statistics from hypervisors.
 func (o *OpenStack) accumulateHypervisors(acc telegraf.Accumulator) {
 	for _, hypervisor := range o.hypervisors {
-		tags := tagMap{
+		tags := map[string]string{
 			"name": hypervisor.HypervisorHostname,
 		}
 		fields := fieldMap{
@@ -381,7 +378,7 @@ func (o *OpenStack) accumulateServers(acc telegraf.Accumulator) {
 			project = p.Name
 		}
 
-		tags := tagMap{
+		tags := map[string]string{
 			"name":    server.Name,
 			"project": project,
 		}
@@ -410,7 +407,7 @@ func (o *OpenStack) accumulateVolumes(acc telegraf.Accumulator) {
 			project = p.Name
 		}
 
-		tags := tagMap{
+		tags := map[string]string{
 			"name":    volume.Name,
 			"project": project,
 			"type":    volumeType,
@@ -425,7 +422,7 @@ func (o *OpenStack) accumulateVolumes(acc telegraf.Accumulator) {
 // accumulateStoragePools accumulates statistics about storage pools.
 func (o *OpenStack) accumulateStoragePools(acc telegraf.Accumulator) {
 	for _, storagePool := range o.storagePools {
-		tags := tagMap{
+		tags := map[string]string{
 			"name": storagePool.Capabilities.VolumeBackendName,
 		}
 		fields := fieldMap{
