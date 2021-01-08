@@ -30,14 +30,11 @@ import (
 const (
 	// plugin is used to identify ourselves in log output
 	plugin = "openstack"
+	volumeV2Service serviceType = "volumev2"
 )
 
 // serviceType is an OpenStack service type
 type serviceType string
-
-const (
-	volumeV2Service serviceType = "volumev2"
-)
 
 // tagMap maps a tag name to value.
 type tagMap map[string]string
@@ -115,7 +112,7 @@ func (o *OpenStack) Description() string {
 // sampleConfig is a sample configuration file entry.
 var sampleConfig = `
   ## This is the recommended interval to poll.
-  interval = '30m'
+  # interval = '30m'
 
   ## The identity endpoint to authenticate against and get the
   ## service catalog from
@@ -123,7 +120,7 @@ var sampleConfig = `
 
   ## The domain to authenticate against when using a V3
   ## identity endpoint.  Defaults to 'default'
-  domain = "default"
+  # domain = "default"
 
   ## The project to authenticate as
   project = "admin"

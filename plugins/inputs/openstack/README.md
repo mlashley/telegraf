@@ -83,7 +83,6 @@ performance impact.
 ### Example Output
 
 ```
-simon@influxdb:~$ ./go/bin/telegraf -test -config telegraf.conf -input-filter openstack
 > openstack_identity,host=symphony projects=16i 1534251270000000000
 > openstack_hypervisor,host=symphony,name=compute0 memory_mb=128921i,memory_mb_used=37376i,running_vms=3i,vcpus=16i,vcpus_used=10i 1534251270000000000
 > openstack_server,host=symphony,name=kubernetes,project=kube disk_gb=100i,ram_mb=32768i,status="active",vcpus=8i 1534251270000000000
